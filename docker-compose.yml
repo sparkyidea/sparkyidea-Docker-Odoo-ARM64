@@ -1,0 +1,33 @@
+version: '3.1'
+services:
+  odoo_web:
+    image: sparkyideainc/odoo:16.0-arm64-dev
+    container_name: odoo_web
+    depends_on:
+      - odoo_db
+    environment:
+      - DB_HOST=odoo_db
+      - DB_PORT=5432
+      - DB_USER=odoo
+      - DB_PASSWORD=odoo
+    ports:
+      - "8069:8069"
+    volumes:
+      - ./my_odoo/odoo-web-data:/opt/odoo/data
+      - ./my_odoo/vscode:/opt/odoo/.vscode
+      - ./my_odoo/home:/home/odoo
+      - ./my_odoo/custom_addons/:/opt/odoo/custom_addons
+    command: ${MODE}
+  odoo_db:
+    image: postgres:15
+    container_name: odoo_db
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=odoo
+      - POSTGRES_PASSWORD=odoo
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - ./my_odoo/odoo-db-data:/var/lib/postgresql/data/pgdata
+volumes:
+  odoo-web-data:
+  odoo-db-data:
