@@ -1,4 +1,4 @@
-# **Unofficial Docker Image for Odoo**
+# **Unofficial Docker Image for Odoo ARM64**
 
 Welcome! This is an unofficial Docker image built for Odoo, especially useful for developers. Let's dive into why this might be something you'd like to try!
 
