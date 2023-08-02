@@ -23,7 +23,9 @@ In this mode, Odoo doesn't start automatically. You'll need to start it manually
 
 ```
 MODE=dev docker-compose up -d
-# or
+```
+or
+```
 MODE=development docker-compose up -d
 ```
 
@@ -64,10 +66,11 @@ In this mode, everything is set up to run smoothly.
 
 ```
 MODE=prod docker-compose up -d
-# or
+```
+or
+```
 MODE=production docker-compose up -d
 ```
-
 ### **Want to Build It Yourself?**
 
 If you're curious and want to build the image yourself, you can run:
