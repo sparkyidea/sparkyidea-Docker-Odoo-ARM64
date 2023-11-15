@@ -32,7 +32,6 @@ MODE=development docker-compose up -d
 **If you use VSCode:** Here's a sample configuration for launch.json
 
 ```
-jsonCopy code
 {
     "version": "0.2.0",
     "configurations": [
