@@ -21,7 +21,7 @@ RUN apt-get install -y \
     gcc g++ curl git nano postgresql-client
 
 # install wkhtmltox for PDF reports
-RUN curl -o wkhtmltox.deb -sSL https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-1/wkhtmltox_0.12.6-1.buster_arm64.deb \
+RUN curl -o wkhtmltox.deb -sSL https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-3/wkhtmltox_0.12.6.1-3.bullseye_arm64.deb \
     && apt-get install -y ./wkhtmltox.deb \
     && rm wkhtmltox.deb
 
@@ -39,6 +39,7 @@ WORKDIR /opt/odoo
 # Install Odoo and dependencies from source and check out specific revision
 USER odoo
 RUN git clone --branch=$ODOO_VERSION --depth=1000 https://github.com/odoo/odoo.git odoo
+RUN cd odoo && git reset --hard $ODOO_REVISION
 
 # Install Odoo python package requirements
 USER root
@@ -59,6 +60,6 @@ RUN mkdir /opt/odoo/data /opt/odoo/custom_addons \
 ENV ODOO_RC /etc/odoo/odoo.conf
 ENV PATH="/opt/odoo/scripts:${PATH}"
 
-EXPOSE 8069
+EXPOSE 8069 8071 8072
 ENTRYPOINT ["/opt/odoo/entrypoint.sh"]
 CMD ["odoo"]
